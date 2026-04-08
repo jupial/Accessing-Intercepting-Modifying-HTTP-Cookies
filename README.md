@@ -7,7 +7,7 @@ The application stores user roles inside a signed cookie, but uses a weak secret
 
 Your goal is to escalate privileges from a normal user to an admin and retrieve the flag.
 
-## Run with Docker (Recommended)
+## Run with Docker
 
 1. Clone the repository:
 
