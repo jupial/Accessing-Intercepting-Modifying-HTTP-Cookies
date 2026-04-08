@@ -19,4 +19,4 @@ docker run -p 5001:5000 cookie-ctf
 ```
  
 
-You should now see the CTF interface.
+You should now be able to go to http://localhost:5001/ and see the CTF interface.
