@@ -16,14 +16,14 @@ cd cookie-ctf
 
 2. Build the Docker image:
 
-docker build -t cookie-ctf .
+`docker build -t cookie-ctf`
 
 3. Run the Docker container:
 
-docker run -p 5000:5000 cookie-ctf
+`docker run -p 5000:5000 cookie-ctf`
 
 4. Open your browser and go to:
 
-http://localhost:5000
+`http://localhost:5000`
 
 You should now see the CTF interface with login and admin links.
