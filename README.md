@@ -13,7 +13,7 @@ Your goal is to escalate privileges from a normal user to an admin and retrieve 
 
 ```bash
 git clone https://github.com/jupial/Accessing-Intercepting-Modifying-HTTP-Cookies.git
-cd cookie-ctf
+cd Accessing-Intercepting-Modifying-HTTP-Cookies
 docker build -t cookie-ctf .
 docker run -p 5000:5000 cookie-ctf
 ```
