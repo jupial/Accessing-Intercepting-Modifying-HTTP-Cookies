@@ -12,7 +12,7 @@ Your goal is to escalate privileges from a normal user to an admin and retrieve 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/cookie-ctf.git
+git clone https://github.com/jupial/Accessing-Intercepting-Modifying-HTTP-Cookies.git
 cd cookie-ctf
 docker build -t cookie-ctf .
 docker run -p 5000:5000 cookie-ctf
