@@ -12,22 +12,11 @@ Your goal is to escalate privileges from a normal user to an admin and retrieve 
 1. Clone the repository:
 
 ```bash
-`git clone https://github.com/yourusername/cookie-ctf.git`
-`cd cookie-ctf`  
+git clone https://github.com/yourusername/cookie-ctf.git
+cd cookie-ctf
+docker build -t cookie-ctf .
+docker run -p 5000:5000 cookie-ctf
 
-2. Build the Docker image:
-
-```bash
-`docker build -t cookie-ctf`  
-
-3. Run the Docker container:
-
-```bash
-`docker run -p 5000:5000 cookie-ctf`  
-
-4. Open your browser and go to:
-
-```bash
-`http://localhost:5000`  
+ 
 
 You should now see the CTF interface.
