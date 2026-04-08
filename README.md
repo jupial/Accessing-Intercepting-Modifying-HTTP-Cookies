@@ -1,4 +1,4 @@
-# Cookie Monster: Signed, But Not Safe (CTF)
+# Cookie Monster (CTF)
 
 ## Description
 This Capture The Flag (CTF) challenge demonstrates how insecure handling of HTTP cookies can lead to privilege escalation.
