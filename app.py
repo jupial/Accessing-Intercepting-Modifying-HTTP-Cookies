@@ -61,7 +61,7 @@ def home():
 @app.route('/login')
 def login():
     session_cookie = encode_session({"role": "user"})
-    resp = app.make_response(render_template("index.html", role="user"))
+    resp = redirect('/')
     resp.set_cookie("session", session_cookie)
     return resp
 
