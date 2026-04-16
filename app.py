@@ -2,15 +2,16 @@ import os
 import base64
 import hashlib
 import json
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect, make_response, render_template
 
 app = Flask(__name__)
 
-SECRET = "123"  # intentionally weak (CTF vulnerability)
+SECRET = os.environ.get("CHALLENGE_SECRET", "123")  # keep weak for CTF
 FLAG = "FLAG{cookie_tampering_master}"
 
+
 # -------------------------
-# SAFE COOKIE PARSING (FIXED CRASHES)
+# COOKIE FUNCTIONS
 # -------------------------
 def encode_session(data):
     json_data = json.dumps(data)
@@ -24,11 +25,7 @@ def decode_session(cookie):
         if not cookie or "." not in cookie:
             return None
 
-        parts = cookie.split(".")
-        if len(parts) != 2:
-            return None
-
-        b64, sig = parts
+        b64, sig = cookie.split(".", 1)
 
         json_data = base64.b64decode(b64).decode()
 
@@ -52,16 +49,15 @@ def home():
     cookie = request.cookies.get("session")
     data = decode_session(cookie)
 
-    if not data:
-        data = {"role": "guest"}
+    role = data.get("role", "guest") if data else "guest"
 
-    return render_template("index.html", role=data.get("role", "guest"))
+    return render_template("index.html", role=role)
 
 
 @app.route('/login')
 def login():
     session_cookie = encode_session({"role": "user"})
-    resp = redirect('/')
+    resp = make_response(redirect('/'))
     resp.set_cookie("session", session_cookie)
     return resp
 
@@ -80,26 +76,4 @@ def admin():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
-@app.route('/login')
-def login():
-    session = encode_session({"role": "user"})
-    resp = make_response(redirect('/'))
-    resp.set_cookie("session", session)
-    return resp
-
-@app.route('/admin')
-def admin():
-    cookie = request.cookies.get("session")
-    data = decode_session(cookie)
-   
-    current_role = data.get("role", "guest") if data else "guest"
-
-    if current_role == "admin":
-        return render_template("admin.html", flag=FLAG)
-
-    return render_template("unauthorized.html", role=current_role), 403
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
-
-SECRET = os.environ.get("CHALLENGE_SECRET", "123")
+    app.run(host="0.0.0.0", port=5000, debug=True)
