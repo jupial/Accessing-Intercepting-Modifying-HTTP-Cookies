@@ -50,7 +50,8 @@ def admin():
     if data and data.get("role") == "admin":
         return render_template("admin.html", flag=FLAG)
 
-    return "Access denied!"
+    # Instead of "Access denied!", we show a themed error page
+    return render_template("unauthorized.html", role=data.get("role") if data else "guest"), 403
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
