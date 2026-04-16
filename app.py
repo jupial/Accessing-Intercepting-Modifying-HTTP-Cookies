@@ -7,7 +7,7 @@ from flask import Flask, request, redirect, make_response, render_template
 app = Flask(__name__)
 
 SECRET = os.environ.get("CHALLENGE_SECRET", "123")  # keep weak for CTF
-FLAG = "FLAG{cookie_tampering_master}"
+FLAG = "ITC266{cookie_tampering_master}"
 
 
 # -------------------------
