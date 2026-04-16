@@ -46,12 +46,13 @@ def login():
 def admin():
     cookie = request.cookies.get("session")
     data = decode_session(cookie)
+   
+    current_role = data.get("role", "guest") if data else "guest"
 
-    if data and data.get("role") == "admin":
+    if current_role == "admin":
         return render_template("admin.html", flag=FLAG)
 
-    return render_template("unauthorized.html", role=data.get("role") if data else "guest"), 403
-
+    return render_template("unauthorized.html", role=current_role), 403
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
 
