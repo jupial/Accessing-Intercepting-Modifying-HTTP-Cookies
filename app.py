@@ -1,3 +1,4 @@
+import os
 import base64
 import hashlib
 import json
@@ -53,3 +54,5 @@ def admin():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
+
+SECRET = os.environ.get("CHALLENGE_SECRET", "123")
